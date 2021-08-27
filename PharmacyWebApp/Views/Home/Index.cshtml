@@ -1,0 +1,92 @@
+﻿@model IEnumerable<PharmacyWebApp.Models.MedicineData>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<style>
+    .label-qty{
+        background-color: yellow;
+    }
+</style>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.medicineName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.expiryDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.quantity < 10)
+            {
+                <tr class="label-qty">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.medicineName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.brand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    </td>
+                    <td id="expDate">
+                        @Html.DisplayFor(modelItem => item.expiryDate)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                        @Html.ActionLink("Delete", "Delete", new { id =item.medicineId })
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.medicineName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.brand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    </td>
+                    <td id="expDate">
+                        @Html.DisplayFor(modelItem => item.expiryDate)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                        @Html.ActionLink("Delete", "Delete", new { id = item.medicineId })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
